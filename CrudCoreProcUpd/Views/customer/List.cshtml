@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CrudCoreProcUpd.Models.customermodel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+@Html.Raw(TempData["InsertMsg"])
+@Html.Raw(TempData["UpdateMsg"])
+@Html.Raw(TempData["DeleteErrorMsg"])
+@Html.Raw(TempData["DeleteMsg"])
+@Html.Raw(ViewData["Message"])
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p1>Serial No</p1>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phoneno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int counter = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @counter
+                    @{counter++;}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phoneno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { onclick = "return confirm('Are you sure to delete this record?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
